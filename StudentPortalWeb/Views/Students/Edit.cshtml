@@ -4,11 +4,21 @@
 @{
 }
 
-@model StudentPortalWeb.Models.AddStudentViewModel
+@model StudentPortalWeb.Models.Entities.Student
 
-<h1>Add Student</h1>
+<h1>Edit Student</h1>
 
+@if (Model is null)
+{
+    <p>No student was found with this Id</p>
+}
+else{
 <form method="post">
+
+    <div class="mt-3">
+        <label class="form-label">Id</label>
+        <input type="text" class="form-control" asp-for="Id" readonly />
+    </div>
 
     <div class="mt-3">
         <label class="form-label">Name</label>
@@ -35,3 +45,5 @@
     </div>
 
 </form>
+}
+
