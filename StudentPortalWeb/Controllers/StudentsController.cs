@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StudentPortalWeb.Models;
 using StudentPortalWeb.Data;
+using System.ComponentModel.DataAnnotations;
+using StudentPortalWeb.Models.Entities;
 
 namespace StudentPortalWeb.Controllers
 {
@@ -23,10 +25,15 @@ namespace StudentPortalWeb.Controllers
         {
             var student = new Student
             {
-                Name = viewModel.Name;
-                
-            }
-            await dbContext.Students.AddAsync();
+                Name = viewModel.Name,
+                Email = viewModel.Email,
+                Phone = viewModel.Phone,
+                Subscribed = viewModel.Subscribed
+            };
+
+            await dbContext.Students.AddAsync(student);
+            await dbContext.SaveChangesAsync();
+
             return View();
         }
     }
